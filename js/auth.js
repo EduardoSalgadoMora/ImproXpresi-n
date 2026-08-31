@@ -6,23 +6,28 @@
    curiosos pero no es seguridad de nivel bancario. No reutilices
    aquí una contraseña importante.
 
-   CÓMO CAMBIAR EL USUARIO Y LA CONTRASEÑA
-   ---------------------------------------
-   1) USUARIO: cambia el texto de USUARIO más abajo.
-   2) CONTRASEÑA: hay que poner el "hash" (huella) de la clave,
-      no la clave en claro. Para generarlo:
-        - Abre esta web, pulsa F12 → pestaña "Consola" y pega:
-            ixHash('TU_NUEVA_CLAVE').then(h=>console.log(h))
-        - Copia el texto largo que salga y pégalo en CLAVE_HASH.
-      (La función ixHash queda disponible en la consola.)
+   CÓMO AÑADIR/CAMBIAR USUARIOS Y CONTRASEÑAS
+   ------------------------------------------
+   Los usuarios están en la lista USUARIOS más abajo. Cada uno tiene
+   su "user" y el "hash" (huella) de su contraseña (nunca la clave en claro).
+   - Para AÑADIR un usuario: copia una línea de la lista y cambia user y hash.
+   - Para GENERAR el hash de una clave nueva:
+        Abre esta web, pulsa F12 → pestaña "Consola" y pega:
+            ixHash('SU_CLAVE').then(h=>console.log(h))
+        Copia el texto largo que salga y pégalo como "hash" de ese usuario.
+     (La función ixHash queda disponible en la consola.)
    ============================================================ */
 (function () {
   'use strict';
 
   // ---------- CONFIGURACIÓN (edita aquí) ----------
-  var USUARIO   = 'edu';
-  // Hash SHA-256 de la contraseña por defecto: impro2025
-  var CLAVE_HASH = '79768eb5a58b6e7c814c54c7ac8f55e142fe752a4239ef96fd4e1b927a8bae17';
+  // Lista de usuarios permitidos. Cada uno con su usuario y el HASH de su clave.
+  // Para añadir/cambiar usuarios: copia una línea y pon su usuario y su hash
+  // (genera el hash en la consola con:  ixHash('SU_CLAVE').then(h=>console.log(h))  ).
+  var USUARIOS = [
+    { user: 'edu',     hash: '79768eb5a58b6e7c814c54c7ac8f55e142fe752a4239ef96fd4e1b927a8bae17' }, // clave: impro2025
+    { user: 'abraham', hash: '60d47d7db360765539809b1f95367ffa92105b58184b547951fea484cedf34a6' }  // clave: abraham2025
+  ];
   var RECORDAR_DIAS = 30;           // cuánto tiempo se recuerda la sesión
   var CLAVE_STORAGE = 'ix_auth';    // dónde se guarda el "ya he entrado"
   // ------------------------------------------------
@@ -182,7 +187,10 @@
       elBtn.textContent = 'Comprobando…';
       var user = (elUser.value || '').trim().toLowerCase();
       hashHex(elPass.value || '').then(function (h) {
-        if (user === USUARIO.trim().toLowerCase() && h === CLAVE_HASH.toLowerCase()) {
+        var ok = USUARIOS.some(function (u) {
+          return user === u.user.trim().toLowerCase() && h === u.hash.toLowerCase();
+        });
+        if (ok) {
           guardarSesion();
           desbloquear();
         } else {
