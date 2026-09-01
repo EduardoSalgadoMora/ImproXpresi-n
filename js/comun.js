@@ -5,6 +5,7 @@ const LTA = {
   KEY_OVERRIDES: 'lta_juegos_editados',
   KEY_CARRITO: 'lta_ficha_actual',
   KEY_FICHAS: 'lta_fichas_guardadas',
+  KEY_SAGRA: 'lta_sagra_datos',
 
   leer(k, def){ try{ return JSON.parse(localStorage.getItem(k)) ?? def; }catch(e){ return def; } },
   guardar(k, v){ localStorage.setItem(k, JSON.stringify(v)); },
@@ -38,7 +39,8 @@ const LTA = {
       favoritos: this.leer(this.KEY_FAVS, []),
       fichaActual: this.leer(this.KEY_CARRITO, null),
       fichasGuardadas: this.leer(this.KEY_FICHAS, []),
-      actuaciones: this.leer('lta_actuaciones', [])
+      actuaciones: this.leer('lta_actuaciones', []),
+      sagra: this.leer(this.KEY_SAGRA, {})
     }, null, 2);
   },
   importarDatos(json){
@@ -49,6 +51,21 @@ const LTA = {
     if(d.fichaActual) this.guardar(this.KEY_CARRITO, d.fichaActual);
     if(d.fichasGuardadas) this.guardar(this.KEY_FICHAS, d.fichasGuardadas);
     if(d.actuaciones) this.guardar('lta_actuaciones', d.actuaciones);
+    if(d.sagra) this.guardar(this.KEY_SAGRA, d.sagra);
+  },
+
+  // Datos del mapa de La Sagra editados por el usuario (por municipio)
+  sagraTodos(){ return this.leer(this.KEY_SAGRA, {}); },
+  sagraDe(id){ return this.sagraTodos()[id] || {}; },
+  guardarSagra(id, obj){
+    const t = this.sagraTodos();
+    t[id] = obj;
+    this.guardar(this.KEY_SAGRA, t);
+  },
+  borrarSagra(id){
+    const t = this.sagraTodos();
+    delete t[id];
+    this.guardar(this.KEY_SAGRA, t);
   },
   conceptos(){ return (typeof CONCEPTOS !== 'undefined') ? CONCEPTOS : []; },
   porId(id){ return this.todos().find(j => j.id === id) || this.conceptos().find(c => c.id === id); },
