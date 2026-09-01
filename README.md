@@ -12,6 +12,7 @@ web_juegos_impro/
 ├── conceptos.html     → Glosario de conceptos teóricos
 ├── ficha.html         → Creador de fichas de clase
 ├── actuaciones.html   → Calendario de actuaciones
+├── mapa.html          → Mapa corocromático de La Sagra
 ├── css/estilos.css
 ├── fonts/Alphakind.ttf → fuente del logo
 ├── img/logo.svg       → logo (recreación en SVG; si guardas el PNG original como img/logo.png se usará ese automáticamente)
@@ -20,16 +21,27 @@ web_juegos_impro/
 │   ├── app.js         → lógica del buscador
 │   ├── conceptos.js   → lógica del glosario
 │   ├── ficha.js       → lógica del creador de fichas
-│   └── actuaciones.js → lógica del calendario
+│   ├── actuaciones.js → lógica del calendario
+│   └── mapa.js        → lógica del mapa de La Sagra
+├── scripts/
+│   └── build_sagra.mjs → genera data/sagra.js (geometría del mapa)
 └── data/
     ├── juegos.js      → base de datos (281 juegos)
-    └── conceptos.js   → glosario (96 conceptos)
+    ├── conceptos.js   → glosario (96 conceptos)
+    └── sagra.js       → municipios de La Sagra (GENERADO, no editar a mano)
 ```
 
 ## Calendario de actuaciones (actuaciones.html)
 - Alta manual de actuaciones: título, fecha, horas, lugar y notas. Se separan automáticamente en **próximas** y **pasadas**.
 - Cada actuación tiene botón **📆 Google Calendar** (abre Google con el evento precargado: solo hay que darle a Guardar) y **⬇ .ics** (para Outlook, iPhone o cualquier calendario).
 - Se pueden editar y borrar; entran en la copia de seguridad.
+
+## Mapa de La Sagra (mapa.html)
+Mapa **corocromático** (coropleta) de los municipios de La Sagra —comarca toledana más el borde madrileño (Griñón, Cubas, Torrejones…)—. Cada municipio se colorea según su **población** (más oscuro = más habitantes; escala tipo la leyenda "Magnitud").
+- **Pincha en un pueblo** (o búscalo por nombre) para abrir su ficha: población aproximada (INE), **espacios donde actuar** (Casa de la Cultura, auditorios, plazas…), **festivales y programación** (p. ej. el *Festival dCALLE* de Illescas) y **contactos de cultura** (web y teléfono del Ayuntamiento, concejalía o técnico programador, email).
+- Todos esos campos son **editables**: rellénalos con tu información real y pulsa **💾 Guardar**. Se guardan en el `localStorage` del navegador y entran en la **copia de seguridad** (igual que juegos, fichas y actuaciones). **↺ Restaurar** vuelve a los datos de partida.
+- El mapa es **esquemático**: los municipios se colocan en su posición geográfica aproximada y se teselan con Voronoi para dibujar regiones contiguas. Sirve para localizar y consultar, no para lindes catastrales.
+- Para regenerar la geometría o cambiar municipios/poblaciones edita `scripts/build_sagra.mjs` y ejecuta `node scripts/build_sagra.mjs` (regenera `data/sagra.js`).
 
 ## Glosario de conceptos (conceptos.html)
 96 conceptos teóricos organizados en 9 bloques: Pilares de la impro, Escena y estructura, Personaje, Emoción y verdad (Stanislavski, Grotowski, Boleslavski), Cuerpo y voz (Lecoq), Comedia, Errores y anti-patrones, Formatos y match, y Pedagogía y dirección.
