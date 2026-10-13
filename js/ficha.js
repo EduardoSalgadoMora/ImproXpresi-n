@@ -186,6 +186,34 @@
     }
   });
 
+  // fichas preparadas (data/fichas.js)
+  function pintarPreparadas(){
+    const preparadas = (typeof FICHAS_PREPARADAS !== 'undefined') ? FICHAS_PREPARADAS : [];
+    const cont = $('#listaPreparadas');
+    cont.innerHTML = preparadas.length ? '' : '<p style="color:#6b6478;font-size:.9rem">No hay fichas preparadas.</p>';
+    preparadas.forEach((f,i) => {
+      const min = f.items.reduce((s,x)=>s+(x.min||0),0);
+      const div = document.createElement('div');
+      div.className = 'ficha-guardada';
+      div.innerHTML = `
+        <span class="nombre">${f.titulo}</span>
+        <span class="datos">${f.fecha || ''} · ${f.items.length} juegos · ${min}'</span>
+        <button class="btn btn-secundario btn-mini" data-carga-prep="${i}">Cargar</button>`;
+      cont.appendChild(div);
+    });
+  }
+  $('#listaPreparadas').addEventListener('click', e => {
+    const carga = e.target.closest('[data-carga-prep]');
+    if(!carga) return;
+    if(ficha.items.length && !confirm('Se sustituirá la ficha actual. ¿Continuar?')) return;
+    ficha = JSON.parse(JSON.stringify(FICHAS_PREPARADAS[+carga.dataset.cargaPrep]));
+    LTA.guardarCarrito(ficha);
+    $('#fTitulo').value = ficha.titulo||''; $('#fFecha').value = ficha.fecha||''; $('#fGrupo').value = ficha.grupo||'';
+    pintar();
+    window.scrollTo(0,0);
+  });
+
   pintar();
+  pintarPreparadas();
   pintarGuardadas();
 })();

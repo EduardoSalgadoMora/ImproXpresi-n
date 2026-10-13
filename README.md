@@ -28,6 +28,7 @@ web_juegos_impro/
 └── data/
     ├── juegos.js      → base de datos (281 juegos)
     ├── conceptos.js   → glosario (96 conceptos)
+    ├── fichas.js      → fichas preparadas (p. ej. Semana 3 · Misterio Agatha Christie)
     └── sagra.js       → municipios de La Sagra (GENERADO, no editar a mano)
 ```
 
@@ -63,6 +64,7 @@ Mapa **corocromático** (coropleta) de los municipios de La Sagra —comarca tol
 - **Guardar**: archiva la ficha (recuperable desde "Fichas guardadas").
 - **Descargar .md**: exporta la ficha en Markdown.
 - **Imprimir / PDF**: versión limpia lista para llevar a clase.
+- **🗂️ Fichas preparadas**: fichas ya montadas en `data/fichas.js` (p. ej. *Semana 3 · Misterio: un crimen a lo Agatha Christie*). Pulsa **Cargar**, retócala y dale a **💾 Guardar** para tenerla entre tus fichas.
 
 ## Dónde se guardan tus datos
 - La base de 281 juegos y los 96 conceptos viven en `data/juegos.js` y `data/conceptos.js` (archivos del disco).
