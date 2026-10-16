@@ -3,20 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
 <title>Crear ficha · Libera tu arte</title>
 <link rel="stylesheet" href="css/estilos.css">
+<script src="js/auth.js"></script>
 </head>
 <body>
 
 <header class="top">
   <a class="brand" href="index.html">
-    <img src="img/logo.png" onerror="this.onerror=null;this.src='img/logo.svg'" alt="ImproXpresión">
+    <img src="img/logo-improxpresion.png" onerror="this.onerror=null;this.src='img/logo.svg'" alt="ImproXpresión">
     <span class="brand-txt"><span class="azul">IMPRO</span><span class="naranja">XPRESIÓN</span></span>
   </a>
   <span class="brand-sub">📋 Crear ficha</span>
   <nav>
+    <a class="btn btn-secundario" href="menudos.html" title="Juegos de las clases infantiles de Menudos Artistas">🧒 Menudos Artistas</a>
     <a class="btn btn-secundario" href="conceptos.html">📖 Conceptos</a>
     <a class="btn btn-secundario" href="actuaciones.html">📅 Actuaciones</a>
+    <a class="btn btn-secundario" href="mapa.html">🗺️ Mapa</a>
     <a class="btn btn-secundario" href="index.html">🎭 Volver al buscador <span class="badge-carrito" id="badgeCarrito">0</span></a>
   </nav>
 </header>
@@ -57,6 +61,11 @@
   </div>
 
   <section class="fichas-guardadas no-print">
+    <h2>🎭 Fichas de clase</h2>
+    <div id="listaBase"></div>
+  </section>
+
+  <section class="fichas-guardadas no-print">
     <h2>📚 Fichas guardadas</h2>
     <div id="listaGuardadas"></div>
   </section>
@@ -65,6 +74,7 @@
 
 <script src="data/juegos.js"></script>
 <script src="data/conceptos.js"></script>
+<script src="data/fichas.js"></script>
 <script src="js/comun.js"></script>
 <script src="js/ficha.js"></script>
 </body>

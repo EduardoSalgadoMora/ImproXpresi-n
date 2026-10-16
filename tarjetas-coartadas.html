@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Tarjetas de coartadas</title>
+<style>
+  @page{size:A4;margin:10mm}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:#222;font-family:'Segoe UI',Arial,sans-serif}
+  .aviso{max-width:190mm;margin:12px auto;padding:8px 12px;background:#fdeef2;border-radius:6px;font-size:14px}
+  .hoja{width:190mm;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:66mm}
+  .tarjeta{border:1.5px dashed #999;padding:5mm 6mm;display:flex;flex-direction:column;gap:3mm}
+  .cab{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #d6336c;padding-bottom:1.5mm}
+  .cab b{font-size:15pt;color:#d6336c}
+  .cab span{font-size:9pt;color:#666}
+  .sub{font-size:9.5pt;color:#555;margin:0}
+  .coartada{display:flex;gap:2.5mm;font-size:12pt;line-height:1.35}
+  .num{flex:none;width:7mm;height:7mm;border:1.5px solid #222;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11pt}
+  .linea{flex:1;border-bottom:1px solid #999;height:7mm}
+  .lineas{flex:1;display:flex;flex-direction:column}
+  .pie{margin-top:auto;font-size:9.5pt;color:#444}
+  @media print{.aviso{display:none}}
+</style>
+</head>
+<body>
+<p class="aviso">🖨 Imprime en A4 (sin márgenes extra ni encabezados) y recorta por las líneas discontinuas. Salen 8 tarjetas.</p>
+<div class="hoja" id="hoja"></div>
+<script>
+const COARTADAS = [
+  'Estaba en la cocina ayudando a la cocinera a hacer un pastel de limón.',
+  'Estaba en el jardín buscando a mi gato, que se había escapado.',
+  'Estaba en mi habitación leyendo un libro de piratas con una linterna.',
+  'Estaba en el salón jugando al ajedrez con el coronel.',
+  'Estaba encerrado en el baño: ¡se atascó la puerta!',
+  'Estaba en la biblioteca, pero me quedé dormido en el sillón.',
+  'Estaba en el establo dando zanahorias a los caballos.',
+  'Estaba en el desván buscando un disfraz para la fiesta.'
+];
+document.getElementById('hoja').innerHTML = COARTADAS.map(c => `
+  <div class="tarjeta">
+    <div class="cab"><b>🔍 Mi coartada</b></div>
+    <p class="sub">La noche del crimen, a las 9 en punto, ¿dónde estabas? Una es verdad y otra es mentira.</p>
+    <div class="coartada"><span class="num">1</span><span>${c}</span></div>
+    <div class="coartada"><span class="num">2</span><span class="lineas"><span class="linea"></span><span class="linea"></span></span></div>
+    <p class="pie">🤫 En secreto, marca cuál es tu mentira:&nbsp; ☐ 1 &nbsp; ☐ 2</p>
+  </div>`).join('');
+</script>
+</body>
+</html>

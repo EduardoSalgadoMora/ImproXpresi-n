@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
 <title>Conceptos · Libera tu arte</title>
 <link rel="stylesheet" href="css/estilos.css">
+<script src="js/auth.js"></script>
 <style>
 .concepto{background:var(--panel);border:1px solid var(--borde);border-radius:var(--radio);padding:16px 20px;box-shadow:var(--sombra);cursor:pointer;transition:.15s}
 .concepto:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(43,36,55,.13)}
@@ -25,13 +27,15 @@
 
 <header class="top">
   <a class="brand" href="index.html">
-    <img src="img/logo.png" onerror="this.onerror=null;this.src='img/logo.svg'" alt="ImproXpresión">
+    <img src="img/logo-improxpresion.png" onerror="this.onerror=null;this.src='img/logo.svg'" alt="ImproXpresión">
     <span class="brand-txt"><span class="azul">IMPRO</span><span class="naranja">XPRESIÓN</span></span>
   </a>
   <span class="brand-sub">📖 Conceptos</span>
   <nav>
     <a class="btn btn-secundario" href="index.html">🎭 Juegos</a>
+    <a class="btn btn-secundario" href="menudos.html" title="Juegos de las clases infantiles de Menudos Artistas">🧒 Menudos Artistas</a>
     <a class="btn btn-secundario" href="actuaciones.html">📅 Actuaciones</a>
+    <a class="btn btn-secundario" href="mapa.html">🗺️ Mapa</a>
     <a class="btn btn-primario" href="ficha.html">📋 Crear ficha <span class="badge-carrito" id="badgeCarrito">0</span></a>
   </nav>
 </header>

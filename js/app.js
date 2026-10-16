@@ -56,6 +56,18 @@
     if(orden === 'alfa') lista.sort((a,b)=>a.t.localeCompare(b.t,'es'));
     if(orden === 'cat') lista.sort((a,b)=>((a.c||[''])[0]).localeCompare((b.c||[''])[0],'es') || a.t.localeCompare(b.t,'es'));
     if(orden === 'fuente') lista.sort((a,b)=>(a.src||'').localeCompare(b.src||'','es') || a.t.localeCompare(b.t,'es'));
+    // Con búsqueda, primero los que coinciden en el título (el orden elegido desempata)
+    if(q){
+      const palabras = q.split(/\s+/);
+      const relevancia = j => {
+        const t = LTA.norm(j.t);
+        if(t.includes(q)) return 0;
+        if(palabras.every(p => t.includes(p))) return 1;
+        if(palabras.some(p => t.includes(p))) return 2;
+        return 3;
+      };
+      lista.sort((a,b)=>relevancia(a)-relevancia(b));
+    }
     return lista;
   }
 
