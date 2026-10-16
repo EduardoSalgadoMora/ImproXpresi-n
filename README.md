@@ -54,6 +54,13 @@ web_juegos_impro/   (en el repo de la web: carpeta privado/)
 - Cada actuación tiene botón **📆 Google Calendar** (abre Google con el evento precargado: solo hay que darle a Guardar) y **⬇ .ics** (para Outlook, iPhone o cualquier calendario).
 - Se pueden editar y borrar; entran en la copia de seguridad.
 
+## Mapa de La Sagra (mapa.html)
+Mapa **corocromático** (coropleta) de los municipios de La Sagra —comarca toledana más el borde madrileño (Griñón, Cubas, Torrejones…)—. Cada municipio se colorea según su **población** (más oscuro = más habitantes; escala tipo la leyenda "Magnitud").
+- **Pincha en un pueblo** (o búscalo por nombre) para abrir su ficha: población aproximada (INE), **espacios donde actuar** (Casa de la Cultura, auditorios, plazas…), **festivales y programación** (p. ej. el *Festival dCALLE* de Illescas) y **contactos de cultura** (web y teléfono del Ayuntamiento, concejalía o técnico programador, email).
+- Todos esos campos son **editables**: rellénalos con tu información real y pulsa **💾 Guardar**. Se guardan en el `localStorage` del navegador y entran en la **copia de seguridad** (igual que juegos, fichas y actuaciones). **↺ Restaurar** vuelve a los datos de partida.
+- El mapa es **esquemático**: los municipios se colocan en su posición geográfica aproximada y se teselan con Voronoi para dibujar regiones contiguas. Sirve para localizar y consultar, no para lindes catastrales.
+- Para regenerar la geometría o cambiar municipios/poblaciones edita `scripts/build_sagra.mjs` y ejecuta `node scripts/build_sagra.mjs` (regenera `data/sagra.js`).
+
 ## Glosario de conceptos (conceptos.html)
 96 conceptos teóricos organizados en 9 bloques: Pilares de la impro, Escena y estructura, Personaje, Emoción y verdad (Stanislavski, Grotowski, Boleslavski), Cuerpo y voz (Lecoq), Comedia, Errores y anti-patrones, Formatos y match, y Pedagogía y dirección.
 - Fuentes: apuntes propios (Edu, Toto Curcio, Sara Párbole, Raúl Marcos, Isaac), The Improv Handbook (Salinsky & Frances-White, incl. su glosario), Keith Johnstone, Stanislavski (*El trabajo del actor sobre sí mismo*), Thomas Richards/Grotowski (*Las acciones físicas*), Boleslavski, Lecoq, Holovatuck & Astrosky y Javier Vecino (*El Match de Improvisación*).
